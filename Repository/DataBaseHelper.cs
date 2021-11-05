@@ -19,7 +19,7 @@ namespace Restful.Repository
                 .HasForeignKey(f => f.PersonId);
 
             modelBuilder.Entity<Address>()
-                .HasKey(r => new { r.Id, r.PersonId});
+                .HasKey(r => new { r.Id, r.PersonId });
 
             modelBuilder.Entity<Address>()
                 .HasOne(o => o.Person)
@@ -27,6 +27,15 @@ namespace Restful.Repository
                 .HasForeignKey(o => o.PersonId);
         }
 
-        public static void SeedData(this ModelBuilder modelBuilder) { }
+        public static void SeedData(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Person>().HasData(new Person[] { 
+                new Person(){ 
+                     Id = 1,
+                      FirstName = "Teste",
+                      LastName = "Pessoa 1"
+                }
+            });
+        }
     }
 }
